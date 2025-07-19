@@ -8,13 +8,14 @@ import { Router } from '@angular/router';
 @Component({
   standalone: true,
   selector: 'app-login',
-  imports: [CommonModule, ReactiveFormsModule,RouterModule],
+  imports: [CommonModule, ReactiveFormsModule,RouterModule,Router],
   templateUrl: './login.component.html',
   styleUrl: './login.component.css'
 })
 export class LoginComponent {
  loginForm: FormGroup;
  submitted = false;
+  router: any;
   constructor(private fb: FormBuilder,private authService: AuthService)
   {
       this.loginForm = this.fb.group({
@@ -31,6 +32,7 @@ export class LoginComponent {
     
         this.authService.login(this.loginForm.value).subscribe({
       next: (response) => {
+        this.router.navigate(['/dashboard']);
         console.log('hehe',response.body.refreshToken) 
       },
       error: (err) => {

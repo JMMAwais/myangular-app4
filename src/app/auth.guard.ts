@@ -1,44 +1,22 @@
-import { inject } from '@angular/core';
-import { CanActivateFn, Router } from '@angular/router';
-import { CookieService } from 'ngx-cookie-service';
+import { Injectable } from '@angular/core';
+import { CanActivate, Router } from '@angular/router';
+import { HttpClient } from '@angular/common/http';
+import { Observable, of } from 'rxjs';
+import { catchError, map } from 'rxjs/operators';
 
+@Injectable({
+  providedIn: 'root',
+})
+export class AuthGuard implements CanActivate {
+  constructor(private http: HttpClient, private router: Router) {}
 
-export const authGuard: CanActivateFn = (route, state) => {
-    const router = inject(Router);  
-    const cookieService = inject(CookieService);
-debugger
- const tokenExists = cookieService.check('token');
- if(tokenExists)
- {
-  return true;
- }else{
-return router.createUrlTree(['/login']);
- }
-   //const refreshToken = cookieService.get('refreshToken');
-
-//    if (token && !isTokenExpired(token)) {
-//   return true; 
-// } 
-
-
-  // if (token && isTokenExpired(token) ) {
-  //   localStorage.removeItem('token');
-  // }
-  // if(refreshToken)
-  // {
-  //  return true;
-  // }
-   
-
-  function isTokenExpired(token: string): boolean {
-  try {
-    const payload = JSON.parse(atob(token.split('.')[1]));
-    const expiry = payload.exp * 1000; 
-  
-    return Date.now() > expiry;
-  } catch {
-    return true; // invalid token = expired
+  canActivate(): Observable<boolean> {
+    return this.http.get('https://localhost:7011/api/account/check-auth', { withCredentials: true }).pipe(
+      map(() => true), // If authenticated
+      catchError(() => {
+        this.router.navigate(['/login']);
+        return of(false);
+      })
+    );
   }
 }
-
-};
