@@ -31,10 +31,7 @@ export class LoginComponent {
     
         this.authService.login(this.loginForm.value).subscribe({
       next: (response) => {
-      
-      localStorage.setItem('token',response.body.token);
-      localStorage.setItem('refreshToken', response.body.refreshToken);
-       console.log('hehe',response.body.refreshToken) 
+        console.log('hehe',response.body.refreshToken) 
       },
       error: (err) => {
       console.error('Login error', err);
