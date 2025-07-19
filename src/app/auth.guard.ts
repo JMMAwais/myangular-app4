@@ -11,6 +11,8 @@ debugger
  if(tokenExists)
  {
   return true;
+ }else{
+return router.createUrlTree(['/login']);
  }
    //const refreshToken = cookieService.get('refreshToken');
 
@@ -26,7 +28,7 @@ debugger
   // {
   //  return true;
   // }
-   return router.createUrlTree(['/login']);
+   
 
   function isTokenExpired(token: string): boolean {
   try {
