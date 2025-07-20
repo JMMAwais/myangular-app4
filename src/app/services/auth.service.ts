@@ -30,7 +30,9 @@ login(userData: any): Observable<HttpResponse<any>> {
   return this.http.post<any>(
     `${this.baseUrl}/account/signup`,
     userData,
-    { observe: 'response' }
+    { observe: 'response',
+      withCredentials: true  
+     }
   );}
 
   logout() {
