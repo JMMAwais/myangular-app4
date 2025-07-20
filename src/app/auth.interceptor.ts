@@ -17,7 +17,7 @@ export const authInterceptor: HttpInterceptorFn = (req: HttpRequest<any>, next: 
     catchError((error: HttpErrorResponse) => {
       if (error.status === 401 && !req.url.includes('refresh-token')) {
         // Try refreshing token
-        return http.post('https://localhost:7011/api/account/refresh-token', {}, { withCredentials: true }).pipe(
+        return http.post('http://localhost:7011/api/account/refresh-token', {}, { withCredentials: true }).pipe(
           switchMap(() => next(cloned)),
           catchError(refreshError => {
             console.error('Refresh failed', refreshError);
