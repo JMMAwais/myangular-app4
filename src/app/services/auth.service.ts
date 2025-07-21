@@ -36,7 +36,7 @@ login(userData: any): Observable<HttpResponse<any>> {
   );}
 
   logout() {
-  this.http.post('api/account/revoke-token', {withCredentials: true}).subscribe(() => {
+  this.http.post(`${this.baseUrl}/account/revoke-token`, {withCredentials: true}).subscribe(() => {
     this.router.navigate(['/login']);
   });
 }
