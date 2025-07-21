@@ -1,1 +1,32 @@
-<p>sidebar works!</p>
+<mat-sidenav-container class="example-container">
+  <mat-sidenav mode="side" opened>
+    <mat-nav-list>
+      <a mat-list-item routerLink="/dashboard">
+        <mat-icon>dashboard</mat-icon>
+        Dashboard
+      </a>
+     <a mat-list-item (click)="logout()">
+  <mat-icon>person</mat-icon>
+  Logout
+</a>
+      <a mat-list-item  routerLink="/settings">
+        <mat-icon>settings</mat-icon>
+        Settings
+      </a>
+
+      <li (click)="logout()" style="cursor: pointer;">
+      <i class="fa fa-sign-out-alt"></i> Logout
+   </li>
+    </mat-nav-list>
+  </mat-sidenav>
+
+  <mat-sidenav-content>
+    <mat-toolbar color="primary">
+      <span>My App</span>
+    </mat-toolbar>
+
+    <div class="content">
+      <router-outlet></router-outlet>
+    </div>
+  </mat-sidenav-content>
+</mat-sidenav-container>
