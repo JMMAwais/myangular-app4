@@ -1,11 +1,7 @@
-.example-container {
-  height: 100vh;
+.dashboard-layout {
+  display: flex;
 }
 
-mat-sidenav {
+app-sidebar {
   width: 200px;
-}
-
-.content {
-  padding: 16px;
 }

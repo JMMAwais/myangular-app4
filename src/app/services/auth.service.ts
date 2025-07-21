@@ -36,20 +36,15 @@ login(userData: any): Observable<HttpResponse<any>> {
   );}
 
   logout() {
-  const refreshToken = localStorage.getItem('refreshToken');
-  this.http.post('/api/account/revoke-token', { refreshToken }).subscribe(() => {
-    localStorage.removeItem('token');
-    localStorage.removeItem('refreshToken');
+  this.http.post('/api/account/revoke-token', {}).subscribe(() => {
     this.router.navigate(['/login']);
   });
 }
 
 refreshToken(): Observable<any> {
-  const refreshToken = localStorage.getItem('refreshToken');
-
   return this.http.post<any>(
     `${this.baseUrl}/account/refresh-token`,
-    { refreshToken }
+    { withCredentials: true }
   );
 }
 
