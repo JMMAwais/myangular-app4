@@ -6,10 +6,13 @@
     <!-- Full Name input -->
     <div class="form-outline mb-3">
       <label class="form-label" for="name">Full Name</label>
-      <input type="text" id="name" class="form-control" formControlName="name"  maxlength="20" (keypress)="allowOnlyAlphabets($event)" [class.is-invalid]="name?.invalid && name?.touched" />
+      <input type="text" id="name" class="form-control" formControlName="name"  maxlength="20" (keypress)="allowOnlyAlphabets($event)" (input)="removeEmoji($event)" [class.is-invalid]="name?.invalid && name?.touched" />
   
    <div *ngIf="name?.invalid && name?.touched" class="text-danger small">
         <div *ngIf="name?.errors?.['required']">Name is required.</div>
+        <div *ngIf="name?.errors?.['onlyAlphabets']">
+  Only alphabets and spaces are allowed.
+</div>
       </div>
     </div>
 

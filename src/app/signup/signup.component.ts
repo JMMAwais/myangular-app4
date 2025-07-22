@@ -45,6 +45,11 @@ export class SignupComponent {
     event.preventDefault();
   }
   }
+
+  removeEmoji(event: any) {
+  const input = event.target;
+  input.value = input.value.replace(/[^\x00-\x7F]/g, '');
+}
     onSubmit() {
     this.passwordMismatch = false;
       this.submitted = true;
