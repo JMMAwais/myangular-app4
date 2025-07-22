@@ -37,6 +37,14 @@ export class SignupComponent {
   get confirmPassword() { return this.signupForm.get('confirmPassword'); }
   get terms() { return this.signupForm.get('terms'); }
 
+
+  allowOnlyAlphabets(event: KeyboardEvent) {
+  const char = event.key;
+  const regex = /^[a-zA-Z\s]$/;
+  if (!regex.test(char)) {
+    event.preventDefault();
+  }
+  }
     onSubmit() {
     this.passwordMismatch = false;
       this.submitted = true;
@@ -51,22 +59,14 @@ export class SignupComponent {
       },
       error: (err) => {
       console.error('Signup error', err);
-  }
-});
+    }
+  });
 
       return;
     }
 
      if (this.signupForm.invalid) return;
 
-//      this.authService.signup(this.signupForm.value).subscribe({
-//   next: (response) => {
-//     console.log('Signup successful', response);
-//   },
-//   error: (err) => {
-//     console.error('Signup error', err);
-//   }
-// });
 
     if (this.password?.value !== this.confirmPassword?.value) {
       this.passwordMismatch = true;
