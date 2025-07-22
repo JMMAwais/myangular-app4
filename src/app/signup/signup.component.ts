@@ -4,7 +4,7 @@ import { ReactiveFormsModule,FormGroup,FormBuilder,Validators } from '@angular/f
 import { RouterModule } from '@angular/router';
 import { passwordMatchValidator } from '../validators/password-match.validator';
 import { AuthService } from '../services/auth.service';
-
+import { onlyAlphabetsValidator } from '../validators/only-alphabets.validator';
 
 
 @Component({
@@ -20,7 +20,7 @@ export class SignupComponent {
 
   constructor(private fb: FormBuilder,private authService: AuthService) {
     this.signupForm = this.fb.group({
-      name: ['', Validators.required],
+      name: ['', Validators.required,onlyAlphabetsValidator],
       email: ['', [Validators.required, Validators.email]],
       password: ['', [Validators.required, Validators.minLength(6)]],
       confirmPassword: ['', Validators.required],
