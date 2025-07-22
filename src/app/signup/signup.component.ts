@@ -35,7 +35,7 @@ export class SignupComponent {
   get email() { return this.signupForm.get('email'); }
   get password() { return this.signupForm.get('password'); }
   get confirmPassword() { return this.signupForm.get('confirmPassword'); }
-  get terms() { return this.signupForm.get('terms'); }
+
 
 
   allowOnlyAlphabets(event: KeyboardEvent) {
