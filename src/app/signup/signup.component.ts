@@ -40,7 +40,7 @@ export class SignupComponent {
 
   allowOnlyAlphabets(event: KeyboardEvent) {
   const char = event.key;
-  const regex = /^[a-zA-Z\s]$/;
+  const regex = /^[a-zA-Z ]$/;
   if (!regex.test(char)) {
     event.preventDefault();
   }
