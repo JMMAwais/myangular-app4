@@ -29,7 +29,7 @@
     <!-- Password input -->
     <div class="form-outline mb-3">
       <label class="form-label" for="password">Password</label>
-      <input type="password" id="password" class="form-control" formControlName="password" autocomplete="off"  [class.is-invalid]="password?.invalid && password?.touched" />
+      <input type="password" id="password" class="form-control" formControlName="password" autocomplete="new-password"  [class.is-invalid]="password?.invalid && password?.touched" />
       <div *ngIf="password?.invalid && password?.touched" class="text-danger small">
         <div *ngIf="password?.errors?.['required']">Password is required.</div>
         <div *ngIf="password?.errors?.['minlength']">Password must be at least 6 characters long.</div>
@@ -39,7 +39,7 @@
     <!-- Confirm Password input -->
     <div class="form-outline mb-3">
       <label class="form-label" for="confirmPassword">Confirm Password</label>
-      <input type="password" id="confirmPassword" class="form-control"  autocomplete="off" formControlName="confirmPassword" [class.is-invalid]="confirmPassword?.invalid && confirmPassword?.touched || passwordMismatch" />
+      <input type="password" id="confirmPassword" class="form-control"  autocomplete="new-password" formControlName="confirmPassword" [class.is-invalid]="confirmPassword?.invalid && confirmPassword?.touched || passwordMismatch" />
       <div *ngIf="confirmPassword?.invalid && confirmPassword?.touched" class="text-danger small">
         <div *ngIf="confirmPassword?.errors?.['required']">Confirm password is required.</div>
       </div>
