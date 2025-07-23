@@ -20,11 +20,11 @@ export class SignupComponent {
 
   constructor(private fb: FormBuilder,private authService: AuthService) {
     this.signupForm = this.fb.group({
-      name: ['', Validators.required,onlyAlphabetsValidator],
+      name: ['', [Validators.required,onlyAlphabetsValidator]],
       email: ['', [Validators.required, Validators.email]],
       password: ['', [Validators.required, Validators.minLength(6)]],
-      confirmPassword: ['', Validators.required],
-      terms: [false, Validators.requiredTrue]
+      confirmPassword: ['', Validators.required]
+      
     },
    {
   validators: passwordMatchValidator  
@@ -50,35 +50,35 @@ export class SignupComponent {
   const input = event.target;
   input.value = input.value.replace(/[^\x00-\x7F]/g, '');
 }
-    onSubmit() {
-    this.passwordMismatch = false;
-      this.submitted = true;
+   onSubmit() {
+  this.passwordMismatch = false;
+  this.submitted = true;
 
-         if (this.signupForm.invalid) {
-      this.signupForm.markAllAsTouched();  
+  if (this.signupForm.invalid){
+  this.signupForm.markAllAsTouched();  
+  }
+  
+  // Stop if form is invalid
+  if (this.signupForm.invalid) {
+    console.log('Invalid form');
+    return;
+  }
 
-      this.authService.signup(this.signupForm.value).subscribe({
-      next: (response) => {
+  // Check password match
+  if (this.password?.value !== this.confirmPassword?.value) {
+    this.passwordMismatch = true;
+    return;
+  }
+
+  // ✅ Form is valid, make API call
+  this.authService.signup(this.signupForm.value).subscribe({
+    next: (response) => {
       console.log('Signup successful', response);
-        
-      },
-      error: (err) => {
+      // Navigate or show success message
+    },
+    error: (err) => {
       console.error('Signup error', err);
     }
   });
-
-      return;
-    }
-
-     if (this.signupForm.invalid) return;
-
-
-    if (this.password?.value !== this.confirmPassword?.value) {
-      this.passwordMismatch = true;
-      return;
-    }
-
-    // ✅ Proceed with signup logic (e.g., API call)
-    console.log(this.signupForm.value);
-  }
+}
 }
