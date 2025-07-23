@@ -22,7 +22,7 @@ export class SignupComponent {
     this.signupForm = this.fb.group({
       name: ['', [Validators.required,onlyAlphabetsValidator]],
       email: ['', [Validators.required, Validators.email]],
-      password: ['', [Validators.required, Validators.minLength(6)]],
+      password: ['', [Validators.required, Validators.minLength(6),Validators.pattern(/^(?=.*[A-Z]).+$/)]],
       confirmPassword: ['', Validators.required]
       
     },
@@ -57,7 +57,7 @@ export class SignupComponent {
   if (this.signupForm.invalid){
   this.signupForm.markAllAsTouched();  
   }
-  
+
   // Stop if form is invalid
   if (this.signupForm.invalid) {
     console.log('Invalid form');
