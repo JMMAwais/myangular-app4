@@ -19,7 +19,7 @@
     <!-- Email input -->
     <div class="form-outline mb-3">
       <label class="form-label" for="email">Email address</label>
-      <input type="email" id="email" class="form-control" formControlName="email" autocomplete="off" [class.is-invalid]="email?.invalid && email?.touched" />
+      <input type="email" id="email" class="form-control" formControlName="email" autocomplete="false" [class.is-invalid]="email?.invalid && email?.touched" />
       <div *ngIf="email?.invalid && email?.touched" class="text-danger small">
         <div *ngIf="email?.errors?.['required']">Email is required.</div>
         <div *ngIf="email?.errors?.['email']">Enter a valid email.</div>
@@ -27,15 +27,32 @@
     </div>
 
     <!-- Password input -->
-    <div class="form-outline mb-3">
+    <!-- <div class="form-outline mb-3">
       <label class="form-label" for="password">Password</label>
       <input type="password" id="password" class="form-control" formControlName="password" autocomplete="new-password"  [class.is-invalid]="password?.invalid && password?.touched" />
       <div *ngIf="password?.invalid && password?.touched" class="text-danger small">
         <div *ngIf="password?.errors?.['required']">Password is required.</div>
         <div *ngIf="password?.errors?.['minlength']">Password must be at least 6 characters long.</div>
       </div>
-    </div>
+    </div> -->
 
+    <div class="password-field">
+  <input
+    [type]="showPassword ? 'text' : 'password'"
+    formControlName="password"
+    id="password"
+    placeholder="Password"
+    autocomplete="new-password"
+  />
+  <button
+    type="button"
+    (click)="togglePasswordVisibility()"
+    class="eye-button"
+    tabindex="-1"
+  >
+    <i [class]="showPassword ? 'fa fa-eye-slash' : 'fa fa-eye'"></i>
+  </button>
+</div>
     <!-- Confirm Password input -->
     <div class="form-outline mb-3">
       <label class="form-label" for="confirmPassword">Confirm Password</label>
