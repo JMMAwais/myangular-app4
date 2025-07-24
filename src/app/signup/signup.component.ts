@@ -17,6 +17,7 @@ export class SignupComponent {
   signupForm: FormGroup;
   submitted = false;
   passwordMismatch: boolean = false;
+  showPassword: boolean = false;
 
   constructor(private fb: FormBuilder,private authService: AuthService) {
     this.signupForm = this.fb.group({
@@ -46,6 +47,10 @@ export class SignupComponent {
   }
   }
 
+  togglePasswordVisibility(): void {
+    this.showPassword = !this.showPassword;
+  }
+  
   removeEmoji(event: any) {
   const input = event.target;
   input.value = input.value.replace(/[^\x00-\x7F]/g, '');
