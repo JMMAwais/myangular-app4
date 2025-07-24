@@ -40,13 +40,16 @@
  <div class="form-outline mb-3">  
 <label class="form-label" for="confirmPassword">Password</label>
 <div class="password-wrapper">
-  <input [type]="showPassword ? 'text' : 'password'" class="form-control"  formControlName="password" id="password" autocomplete="new-password" />
+  <input [type]="showPassword ? 'text' : 'password'" class="form-control"  formControlName="password" id="password" autocomplete="new-password" [class.is-invalid]="password?.invalid && password?.touched" />
+   <div *ngIf="password?.invalid && password?.touched" class="text-danger small"></div>
   <i
     class="toggle-password fa"
     [ngClass]="showPassword ? 'fa-eye-slash' : 'fa-eye'"
     (click)="togglePasswordVisibility()"
   ></i>
-</div></div>
+ 
+</div>
+</div>
     <!-- Confirm Password input -->
     <div class="form-outline mb-3">
       <label class="form-label" for="confirmPassword">Confirm Password</label>
