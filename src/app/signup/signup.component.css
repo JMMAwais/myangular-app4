@@ -21,16 +21,26 @@
   
 } 
 
-.toggle-password {
+/* .toggle-password {
   position: absolute;
   top: 50%;
   right: 10px;
   transform: translateY(-50%);
   cursor: pointer;
   color: #999;
-}
+} */
 .-wrapper {
   position: relative;
+}
+
+.toggle-password {
+  position: absolute;
+  top: 50%;
+  right: 30px;
+  transform: translateY(-50%);
+  cursor: pointer;
+  color: #999;
+  z-index: 2;
 }
 /* input {
   
