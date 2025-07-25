@@ -42,6 +42,7 @@
 <div class="password-wrapper">
   <input [type]="showPassword ? 'text' : 'password'" class="form-control"  formControlName="password" id="password" autocomplete="new-password" [class.is-invalid]="password?.invalid && password?.touched"/>
    <div *ngIf="password?.invalid && password?.touched" class="text-danger small"></div>
+   <div *ngIf="password?.errors?.['required']">Password is required.</div>
   <i
     class="toggle-password fa"
     [ngClass]="showPassword ? 'fa-eye-slash' : 'fa-eye'"
