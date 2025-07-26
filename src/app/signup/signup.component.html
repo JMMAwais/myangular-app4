@@ -38,6 +38,7 @@
 
 <div class="form-outline mb-3 position-relative">
   <label class="form-label" for="newPass">Password</label>
+
   <input
     [type]="showPassword ? 'text' : 'password'"
     id="newPass"
@@ -47,9 +48,10 @@
     autocomplete="new-password"
     [class.is-invalid]="password?.invalid && password?.touched"
   />
-  
-  <!-- Eye Icon -->
+
+  <!-- Eye icon only shows when password is valid and not empty -->
   <i
+    *ngIf="password?.value && password?.valid"
     class="fa"
     [ngClass]="showPassword ? 'fa-eye-slash' : 'fa-eye'"
     (click)="togglePasswordVisibility()"
