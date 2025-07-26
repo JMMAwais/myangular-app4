@@ -62,3 +62,14 @@ input:focus {
   border-radius: 0.375rem;
   background-color: #fff;
 } */
+ .eye-icon:hover {
+  color: #007bff; /* Light blue or any theme color */
+}
+.eye-button {
+  background: none;
+  border: none;
+  position: absolute;
+  top: 38px;
+  right: 15px;
+  cursor: pointer;
+}
