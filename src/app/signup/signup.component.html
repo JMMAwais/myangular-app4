@@ -40,9 +40,15 @@
 <label class="form-label" for="confirmPassword">Password</label>
 <div class="password-wrapper">
   <input [type]="showPassword ? 'text' : 'password'" class="form-control"  formControlName="password" id="password" autocomplete="new-password" [class.is-invalid]="password?.invalid && password?.touched"/>
-   <i class="toggle-password fa" [ngClass]="showPassword ? 'fa-eye-slash' : 'fa-eye'" (click)="togglePasswordVisibility()"></i>
+   <span
+    class="eye-icon"
+    *ngIf="password?.errors"
+    (click)="togglePasswordVisibility()"
+  >
+     <i class="fa-eye"></i>
+  </span>
   <div *ngIf="password?.invalid && password?.touched" class="text-danger small">
-   <div *ngIf="password?.errors?.['required'] && password?.touched" class="text-danger small">
+   <div *ngIf="password?.errors?.['required']">
   Password is required.
 </div>
    <div *ngIf="password?.errors?.['minlength']">Password must be at least 6 characters long.</div>
