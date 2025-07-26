@@ -49,15 +49,14 @@
     [class.is-invalid]="password?.invalid && password?.touched"
   />
 
-  <!-- Eye icon only shows when password is valid and not empty -->
- <button
-  type="button"
-  aria-label="Toggle password visibility"
-  (click)="togglePasswordVisibility()"
-  class="eye-button"
->
-  <i class="fa" [ngClass]="showPassword ? 'fa-eye-slash' : 'fa-eye'"></i>
-</button>
+  <!-- Eye icon only shows if user typed something -->
+  <i
+    *ngIf="password?.value?.length > 0"
+    class="fa"
+    [ngClass]="showPassword ? 'fa-eye-slash' : 'fa-eye'"
+    (click)="togglePasswordVisibility()"
+    style="position: absolute; top: 38px; right: 15px; cursor: pointer;"
+  ></i>
 
   <div *ngIf="password?.invalid && password?.touched" class="text-danger small">
     <div *ngIf="password?.errors?.['required']">Password is required.</div>
